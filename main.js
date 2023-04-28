@@ -28,6 +28,13 @@ let currencyRatio = {
       unit: "동",
     },
   };
+
+  let nowcurrency = {
+    KRW: "원",
+    USD: "달러",
+    VND: "동",
+  }
+
   // 1. console.log(currencyRatio.VND.unit);
   
   // console.log(currencyRatio["VND"]["unit"]);
@@ -40,10 +47,13 @@ let currencyRatio = {
       //1. 버튼을 가져온다
       //2. 버튼에 값을 바꾼다
       document.getElementById("from-button").textContent = this.textContent;
-  
+
       //3. 선택된 currency값을 변수에 저장해준다.
       fromCurrency = this.textContent;
-      console.log("fromcurrey는", fromCurrency);
+      // console.log("fromcurrey는", fromCurrency);
+      // 2번 과제 !!
+      document.getElementById("from-money").textContent = nowcurrency[fromCurrency];
+
       convert();
     })
   );
@@ -52,7 +62,11 @@ let currencyRatio = {
     menu.addEventListener("click", function () {
       document.getElementById("to-button").textContent = this.textContent;
       toCurrency = this.textContent;
-      convert();
+
+
+      document.getElementById("to-money").textContent = nowcurrency[toCurrency];
+
+      convertreverse();
     })
   );
   
@@ -66,7 +80,7 @@ let currencyRatio = {
     // 돈 * 환율 = 환전금액
     let amount = document.getElementById("from-input").value;
     let convertedAmount = amount * currencyRatio[fromCurrency][toCurrency];
-    console.log("환전 결과!", convertedAmount);
+    // console.log("환전 결과!", convertedAmount);
   
     document.getElementById("to-input").value = convertedAmount;
   }
